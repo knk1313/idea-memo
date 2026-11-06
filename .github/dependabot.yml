@@ -1,0 +1,8 @@
+# CI で使うアクションの更新を、週に1回PRで届ける。
+# Swift のパッケージには外部の依存がないので、github-actions だけを見る。
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
