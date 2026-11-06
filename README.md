@@ -38,7 +38,13 @@ pkill -f IdeaMemo.app/Contents/MacOS/IdeaMemo
 open IdeaMemo.app
 ```
 
-ログインしたときに自動で起動したいときは、システム設定の「一般」→「ログイン項目」に`IdeaMemo.app`を足す。
+ふだん使いにするときは、`--install`を付けて実行する。ビルドした`IdeaMemo.app`を`/Applications`に入れ替え、起動し直す。コードを直した後も、同じコマンドで入れ替えられる。
+
+```bash
+./build.sh --install
+```
+
+ログインしたときに自動で起動したいときは、システム設定の「一般」→「ログイン項目」に`/Applications/IdeaMemo.app`を足す。
 
 ## 使い方
 

@@ -1,5 +1,7 @@
 #!/bin/zsh
 # リリースビルドして IdeaMemo.app を作る
+#   ./build.sh            リポジトリの中に IdeaMemo.app を作る
+#   ./build.sh --install  さらに /Applications に入れ替えて起動し直す
 set -e
 cd "$(dirname "$0")"
 swift build -c release
@@ -22,3 +24,13 @@ cat > $APP/Contents/Info.plist <<PLIST
 PLIST
 codesign --force --sign - $APP
 echo "built: $(pwd)/$APP"
+
+if [[ "$1" == "--install" ]]; then
+  DEST=/Applications/$APP
+  # 動いているアプリ（リポジトリの中のものも含む）を終了させてから入れ替える
+  pkill -f "$APP/Contents/MacOS/IdeaMemo" && sleep 1 || true
+  rm -rf "$DEST"
+  ditto "$APP" "$DEST"
+  open "$DEST"
+  echo "installed: $DEST"
+fi

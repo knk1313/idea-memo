@@ -16,14 +16,15 @@
 実行する場所は、すべてリポジトリのルート。
 
 | 用途 | コマンド |
-|---|---|
+| --- | --- |
 | ビルド（型の検査を含む） | `swift build` |
 | アプリ（`IdeaMemo.app`）を作る | `./build.sh` |
 | 起動 | `open IdeaMemo.app` |
+| `/Applications`に入れ替えて起動し直す | `./build.sh --install` |
 
-動いているアプリを作り直すときは、先に `pkill -f IdeaMemo.app/Contents/MacOS/IdeaMemo` で終了させてから `./build.sh` を実行する。
+動いているアプリを作り直すときは、先に`pkill -f IdeaMemo.app/Contents/MacOS/IdeaMemo`で終了させてから`./build.sh`を実行する。`--install`は終了から起動し直しまでをまとめて行う。利用者がふだん使っている`/Applications/IdeaMemo.app`を置き換えるので、頼まれたときだけ使う。
 
-アプリはメモを利用者が選んだフォルダ（既定は `~/Documents/IdeaMemo`）に保存する。`memo/` はその保存先にした利用者のデータなので、読み書きしない。
+アプリはメモを利用者が選んだフォルダー（既定は`~/Documents/IdeaMemo`）に保存する。`memo/`はその保存先にした利用者のデータなので、読み書きしない。
 
 ## git操作
 
