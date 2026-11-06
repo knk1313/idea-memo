@@ -118,3 +118,7 @@ SwiftとSwiftUIで書き、メニューバーとウィンドウの扱いにはAp
     ├── ListView.swift        # メモ一覧
     └── Store.swift           # メモの読み書き、保存先の移動
 ```
+
+## ライセンス
+
+[MITライセンス](LICENSE)で公開している。不具合の報告や改善の提案は[CONTRIBUTING.md](CONTRIBUTING.md)を、脆弱性の報告は[SECURITY.md](SECURITY.md)を参照してほしい。
