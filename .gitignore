@@ -1,0 +1,26 @@
+# OS・エディター
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# 秘密情報（.env.example だけを追跡する）
+.env
+.env.*
+!.env.example
+
+# Claude Code の個人設定
+.claude/settings.local.json
+.claude/.credentials.json
+
+# ログ
+*.log
+
+# Swift のビルド成果物
+.build/
+.swiftpm/
+*.app
+
+# アプリが保存した自分のメモ（保存先をこのリポジトリの中にしたとき）
+memo/
