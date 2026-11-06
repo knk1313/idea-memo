@@ -2,6 +2,8 @@
 
 メニューバーに常駐するMac用のメモアプリ。メモは1件ずつMarkdownファイルとして保存されるので、ほかのエディターでも読み書きできる。
 
+<img width="1668" height="946" alt="image" src="https://github.com/user-attachments/assets/30623fb9-f542-4bd5-8541-1bcc2616b883" />
+
 ## できること
 
 - ⌃⌘Spaceで、どこからでも入力欄を開く
