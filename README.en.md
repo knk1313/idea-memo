@@ -130,7 +130,3 @@ IdeaMemo is written in Swift and SwiftUI, and uses AppKit for the menu bar and w
     ├── ListView.swift        # The memo list
     └── Store.swift           # Reading and writing memos, moving the storage folder
 ```
-
-## License
-
-Released under the [MIT License](LICENSE). See [CONTRIBUTING.md](CONTRIBUTING.md) for bug reports and suggestions (written in Japanese), and [SECURITY.md](SECURITY.md) for reporting vulnerabilities.
