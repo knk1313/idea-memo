@@ -176,25 +176,12 @@ private struct MemoDetailView: View {
     @State private var draft = ""
     @State private var saveTask: Task<Void, Never>?
 
-    /// 作成日時と、作成から1分を超えて更新されていれば更新の相対時刻
-    @ViewBuilder private var dateLabels: some View {
-        Text(memo.createdAt, format: .dateTime.year().month().day().weekday().hour().minute())
-            .lineLimit(1).fixedSize()
-        if memo.updatedAt.timeIntervalSince(memo.createdAt) > 60 {
-            Text("更新 \(memo.updatedAt.formatted(.relative(presentation: .named)))")
-                .lineLimit(1).fixedSize()
-        }
-    }
-
     var body: some View {
         VStack(spacing: 0) {
             HStack(alignment: .center, spacing: 12) {
-                // 1行に入り切るなら横に並べ、幅が足りないときだけ2行に折る
-                ViewThatFits(in: .horizontal) {
-                    HStack(spacing: 8) { dateLabels }
-                    VStack(alignment: .leading, spacing: 2) { dateLabels }
-                }
-                .font(.caption).foregroundStyle(.secondary)
+                Text(memo.createdAt, format: .dateTime.year().month().day().weekday().hour().minute())
+                    .lineLimit(1).fixedSize()
+                    .font(.caption).foregroundStyle(.secondary)
                 Spacer()
                 Picker("", selection: $editing) {
                     Text("プレビュー").tag(false)
