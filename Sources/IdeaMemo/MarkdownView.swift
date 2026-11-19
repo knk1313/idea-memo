@@ -73,6 +73,12 @@ enum MarkdownParser {
 }
 
 struct MarkdownView: View {
+    /// 本文の文字の大きさ。編集モード（MemoTextView）と同じにする
+    static let bodySize: CGFloat = 15
+    /// 本文の行間。SwiftUI の Text は 15pt の行の高さを NSTextView より1pt高く取る（19pt と 18pt）。
+    /// 編集モードの行間（文字の大きさの0.25倍）から1pt引き、行の送り幅をそろえる
+    static let bodyLineSpacing: CGFloat = bodySize * 0.25 - 1
+
     let source: String
     var onToggleTask: ((Int) -> Void)?
 
@@ -98,7 +104,7 @@ struct MarkdownView: View {
             .padding(.top, level <= 2 ? 8 : 4)
 
         case .paragraph(let text):
-            Text(MarkdownParser.inline(text)).font(.system(size: 14)).lineSpacing(4)
+            Text(MarkdownParser.inline(text)).font(.system(size: Self.bodySize)).lineSpacing(Self.bodyLineSpacing)
 
         case .listItem(let indent, let marker, let text, let line):
             let done: Bool = { if case .task(true) = marker { return true }; return false }()
@@ -119,13 +125,14 @@ struct MarkdownView: View {
                     .strikethrough(done)
                     .foregroundStyle(done ? .secondary : .primary)
             }
-            .font(.system(size: 14))
+            .font(.system(size: Self.bodySize)).lineSpacing(Self.bodyLineSpacing)
             .padding(.leading, CGFloat(indent) * 18 + 4)
 
         case .quote(let text):
             HStack(spacing: 10) {
                 RoundedRectangle(cornerRadius: 1.5).fill(.secondary.opacity(0.4)).frame(width: 3)
-                Text(MarkdownParser.inline(text)).foregroundStyle(.secondary).font(.system(size: 14))
+                Text(MarkdownParser.inline(text)).foregroundStyle(.secondary)
+                    .font(.system(size: Self.bodySize)).lineSpacing(Self.bodyLineSpacing)
             }
             .fixedSize(horizontal: false, vertical: true)
 

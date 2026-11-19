@@ -207,12 +207,21 @@ private struct MemoDetailView: View {
                     .onChange(of: draft) { scheduleSave() }
             } else {
                 ScrollView {
-                    if memo.body.isEmpty {
-                        Text("（空のメモ）").foregroundStyle(.secondary).padding(28)
-                    } else {
-                        MarkdownView(source: memo.body) { line in store.toggleTask(memo.id, line: line) }
-                            .padding(28)
+                    // 編集モードと文字の位置・折り返し幅をそろえる。
+                    // 内側の余白は、NSTextView の lineFragmentPadding（5）と textContainerInset（高さ2）に合わせる
+                    Group {
+                        if memo.body.isEmpty {
+                            Text("（空のメモ）").foregroundStyle(.secondary)
+                                .font(.system(size: 15))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        } else {
+                            MarkdownView(source: memo.body) { line in store.toggleTask(memo.id, line: line) }
+                        }
                     }
+                    .padding(.horizontal, 5).padding(.vertical, 2)
+                    .frame(maxWidth: 760)
+                    .padding(.horizontal, 20).padding(.vertical, 14)
+                    .frame(maxWidth: .infinity)
                 }
             }
         }
