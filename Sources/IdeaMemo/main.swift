@@ -90,7 +90,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         panel.isVisible ? panel.close() : showPanel()
     }
 
+    /// 一覧を開いていれば閉じて、入れ替わりにパネルを出す（⌘L で一覧を開くときの逆）
     @objc func showPanel() {
+        listWindow?.close()
         NSApp.activate(ignoringOtherApps: true)
         panel.show()
     }
